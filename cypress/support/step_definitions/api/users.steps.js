@@ -1,5 +1,5 @@
 import { Given, When, Then } from "@badeball/cypress-cucumber-preprocessor";
-import UsersServices from "../../e2e/api/services/usersServices";
+import UsersServices from "../../../e2e/api/services/usersServices"
 
 const usersServices = new UsersServices();
 
@@ -56,4 +56,61 @@ When("eu deletar o usuario existente", () => {
 Then("não deve ser possivel achar o usuario realizando busca", () => {
     usersServices.buscarUsuarioAtravesDoRegistro().as('buscarUsuario');
     usersServices.validarUsuarioInexistenteNaBase();
+});
+
+Given("que eu quero realizar uma busca com um id invalido", () => {
+    return true;
+});
+
+When("realizo a chamada com o id invalido", () => {
+    usersServices.buscarUsuarioComRegistroInvalido().as('usuarioInvalido')
+});
+
+Then("deve ser retornado a mensagem de erro id deve ter exatamente 16 caracteres alfanuméricos", () => {
+    usersServices.validarUsuarioComRegristoInvalido();
+});
+
+Given("que eu quero realizar um cadastro com os campos vazios", () => {
+    usersServices.gerarDadosCamposVazios();
+});
+
+When("realizo a chamada com todos os campos vazios", () => {
+    usersServices.cadastrarUsuarioCamposVazios().as('usuarioCamposVazios');
+});
+
+Then("deve ser retornado a mensagem que os campos nao podem ficar em branco", () => {
+    usersServices.validarUsuarioCamposVazios();
+});
+
+Given("que eu quero realizar um cadastro com o body vazio", () => {
+    usersServices.gerarBodyVazio();
+});
+
+When("realizo a chamada sem enviar o body", () => {
+    usersServices.cadastrarUsuarioBodyVazio().as('usuarioBodyVazio');
+});
+
+Then("deve ser retornado que os campos são obrigatórios", () => {
+    usersServices.validarUsuarioBodyVazio();
+});
+
+When("eu atualizar o id do usuario", () => {
+    usersServices.buscarUsuarioAtravesDoRegistro().as('buscarUsuario');
+    usersServices.atualizarUsuarioComRegistro().as('usuarioAtualizado');
+});
+
+Then("nao deve ser permitido atualizar o id", () => {
+    usersServices.validarIdNaoPermitido();
+});
+
+Given("que eu tenha um registro invalido", () => {
+    usersServices.gerarId().as('novoId');
+});
+
+When("eu deletar o usuario", () => {
+    usersServices.deletarUsuarioInexistente().as('usuarioExcluido');
+});
+
+Then("nenhum registro deve ser excluído", () => {
+    usersServices.validarDeletarUsuarioInexistente();
 });

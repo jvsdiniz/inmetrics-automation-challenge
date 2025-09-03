@@ -1,4 +1,5 @@
 import { faker } from '@faker-js/faker';
+import * as utils from "../../../support/utils"
 
 class usersServices {
 
@@ -8,6 +9,24 @@ class usersServices {
             email: faker.internet.email(),
             senha: faker.internet.password({ length: 8 })
         }
+    }
+
+    gerarDadosCamposVazios() {
+        return {
+            nome: "",
+            email: "",
+            password: "",
+            administrador: ""
+        }
+    }
+
+    gerarBodyVazio() {
+        return {};
+    }
+
+    gerarId() {
+        let id = utils.gerarId();
+        return cy.wrap(id);
     }
 
     cadastrarNovoUsuario() {
@@ -113,7 +132,6 @@ class usersServices {
                 body: usuarioExistente
             })
         })
-
     }
 
     validarAtualizarDadosUsuario() {
@@ -135,10 +153,113 @@ class usersServices {
         })
     }
 
-    validarUsuarioInexistenteNaBase(){
+    validarUsuarioInexistenteNaBase() {
         cy.get('@buscarUsuario').then((response) => {
             expect(response.status).to.eq(400);
             expect(response.body.message).to.eq("Usuário não encontrado");
+        })
+    }
+
+    buscarUsuarioComRegistroInvalido() {
+        return cy.api({
+            method: 'GET',
+            url: `${Cypress.env("apiUrl")}/usuarios/usuarioInexistente`,
+            failOnStatusCode: false
+        })
+    }
+
+    validarUsuarioComRegristoInvalido() {
+        cy.get('@usuarioInvalido').then((response) => {
+            expect(response.status).to.eq(400);
+            expect(response.body.id).to.eq("id deve ter exatamente 16 caracteres alfanuméricos");
+        })
+    }
+
+    cadastrarUsuarioCamposVazios() {
+        const usuarioCamposVazios = this.gerarDadosCamposVazios();
+
+        return cy.api({
+            method: 'POST',
+            url: `${Cypress.env("apiUrl")}/usuarios`,
+            body: usuarioCamposVazios,
+            failOnStatusCode: false
+        })
+    }
+
+    validarUsuarioCamposVazios() {
+        cy.get('@usuarioCamposVazios').then((response) => {
+            const body = response.body;
+            expect(response.status).to.eq(400);
+
+            expect(body.nome).to.eq("nome não pode ficar em branco");
+            expect(body.email).to.eq("email não pode ficar em branco");
+            expect(body.password).to.eq("password não pode ficar em branco");
+            expect(body.administrador).to.eq("administrador deve ser 'true' ou 'false'");
+        })
+    }
+
+    cadastrarUsuarioBodyVazio() {
+        const usuarioBodyVazio = this.gerarBodyVazio();
+
+        return cy.api({
+            method: 'POST',
+            url: `${Cypress.env("apiUrl")}/usuarios`,
+            body: usuarioBodyVazio,
+            failOnStatusCode: false
+        })
+    }
+
+    validarUsuarioBodyVazio() {
+        cy.get('@usuarioBodyVazio').then((response) => {
+            const body = response.body;
+            expect(response.status).to.eq(400);
+
+            expect(body.nome).to.eq("nome é obrigatório");
+            expect(body.email).to.eq("email é obrigatório");
+            expect(body.password).to.eq("password é obrigatório");
+            expect(body.administrador).to.eq("administrador é obrigatório");
+        })
+    }
+
+    atualizarUsuarioComRegistro() {
+        return cy.get('@buscarUsuario').then((usuario) => {
+            const id = usuario.body._id
+            const usuarioExistente = usuario.body
+            const novoId = utils.gerarId();
+
+            usuarioExistente._id = novoId;
+
+            return cy.api({
+                method: 'PUT',
+                url: `${Cypress.env("apiUrl")}/usuarios/${id}`,
+                body: usuarioExistente,
+                failOnStatusCode: false
+            })
+        })
+    }
+
+    validarIdNaoPermitido() {
+        cy.get('@usuarioAtualizado').then((response) => {
+            expect(response.status).to.eq(400);
+            expect(response.body._id).to.eq("_id não é permitido")
+        })
+    }
+
+    deletarUsuarioInexistente() {
+        return cy.get('@novoId').then((id) => { // agora é só string
+            return cy.api({
+                method: 'DELETE',
+                url: `${Cypress.env("apiUrl")}/usuarios/${id}`,
+                failOnStatusCode: false
+            });
+        });
+    }
+
+
+    validarDeletarUsuarioInexistente() {
+        cy.get('@usuarioExcluido').then((response) => {
+            expect(response.status).to.eq(200);
+            expect(response.body.message).to.eq("Nenhum registro excluído");
         })
     }
 
