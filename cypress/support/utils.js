@@ -9,3 +9,7 @@ export function gerarId(tamanho = 16) {
 
   return resultado;
 }
+
+export function gerarBodyVazio() {
+  return {};
+}
