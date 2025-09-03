@@ -1,4 +1,4 @@
-Feature: Usuário
+Feature: API | Usuário
 
 Scenario: Sucesso | Buscar todos os usuarios
     Given que eu queira buscar a lista contendo todos os usuários
@@ -36,7 +36,7 @@ Scenario: Falha | Cadastrar usuário com campos vazios
     Then deve ser retornado a mensagem que os campos nao podem ficar em branco
 
 Scenario: Falha | Cadastrar usuário com o body vazio
-    Given que eu quero realizar um cadastro com o body vazio
+    Given o body esteja vazio
     When realizo a chamada sem enviar o body
     Then deve ser retornado que os campos são obrigatórios
 

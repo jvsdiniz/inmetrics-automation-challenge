@@ -20,10 +20,6 @@ class usersServices {
         }
     }
 
-    gerarBodyVazio() {
-        return {};
-    }
-
     gerarId() {
         let id = utils.gerarId();
         return cy.wrap(id);
@@ -199,7 +195,7 @@ class usersServices {
     }
 
     cadastrarUsuarioBodyVazio() {
-        const usuarioBodyVazio = this.gerarBodyVazio();
+        const usuarioBodyVazio = utils.gerarBodyVazio();
 
         return cy.api({
             method: 'POST',

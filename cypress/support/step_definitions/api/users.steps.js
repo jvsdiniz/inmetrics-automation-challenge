@@ -1,5 +1,6 @@
 import { Given, When, Then } from "@badeball/cypress-cucumber-preprocessor";
 import UsersServices from "../../../e2e/api/services/usersServices"
+import * as utils from "../../utils"
 
 const usersServices = new UsersServices();
 
@@ -82,8 +83,8 @@ Then("deve ser retornado a mensagem que os campos nao podem ficar em branco", ()
     usersServices.validarUsuarioCamposVazios();
 });
 
-Given("que eu quero realizar um cadastro com o body vazio", () => {
-    usersServices.gerarBodyVazio();
+Given("o body esteja vazio", () => {
+    utils.gerarBodyVazio();
 });
 
 When("realizo a chamada sem enviar o body", () => {
