@@ -1,8 +1,4 @@
-import { faker } from '@faker-js/faker';
 import * as utils from "../../../support/utils"
-import UsersServices from './usersServices';
-
-const usersServices = new UsersServices();
 
 class loginServices {
 
