@@ -8,6 +8,8 @@ module.exports = defineConfig({
   e2e: {
     specPattern: "**/*.feature",
     supportFile: "cypress/support/e2e.js",
+    viewportWidth: 1280,  
+    viewportHeight: 720,  
     async setupNodeEvents(on, config) {
       await preprocessor.addCucumberPreprocessorPlugin(on, config);
 
@@ -26,5 +28,6 @@ module.exports = defineConfig({
   },
   env: {
     apiUrl: "https://serverest.dev",
+    apiWeb: "https://www.saucedemo.com/"
   },
 });
