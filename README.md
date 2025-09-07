@@ -1,7 +1,7 @@
 # 💛 Desafio Técnico INmetrics  
 
 ## 📄 Desafio & Documentação
-- [Documento do desafio](https://docs.google.com/document/d/1eO6cMDHdyaUwpJoT5wS_ULnqqIQq3PimGkqpENsJIYE/edit?tab=t.0)
+- [Desafio](https://docs.google.com/document/d/1eO6cMDHdyaUwpJoT5wS_ULnqqIQq3PimGkqpENsJIYE/edit?tab=t.0)
 - [Documentação](https://docs.google.com/document/d/1oJ0KloeROA9mQ1R6x2Rw93Stx9jW_cgUL7KWToyaaRU/edit?usp=sharing)
 
 ## 🔧 Tecnologias usadas 
