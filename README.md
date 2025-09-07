@@ -1,5 +1,9 @@
 # 💛 Desafio Técnico INmetrics  
 
+## 📄 Desafio & Documentação
+- [Documento do desafio](https://docs.google.com/document/d/1eO6cMDHdyaUwpJoT5wS_ULnqqIQq3PimGkqpENsJIYE/edit?tab=t.0)
+- [Documentação](https://docs.google.com/document/d/1oJ0KloeROA9mQ1R6x2Rw93Stx9jW_cgUL7KWToyaaRU/edit?usp=sharing)
+
 ## 🔧 Tecnologias usadas 
 - **Cypress** | Versão 15
 - **Cucumber** | Versão 23
@@ -8,23 +12,24 @@
 ## 📁 Estrutura do projeto
 ```bash
 cypress/
- ├─ e2e/                  # Onde ficam os testes end-to-end
- │   ├─ api/              # Testes e recursos para API
- │   │   ├─ features/     # Cenários BDD (arquivos .feature)
- │   │   └─ services/     # Serviços auxiliares 
- │   └─ web/              # Testes e recursos para interface web
- │       ├─ features/     # Cenários BDD da camada web
- │       └─ pages/        # Page Objects (abstrações de páginas)
+ ├─ e2e/                     # Onde ficam os testes end-to-end
+ │   ├─ api/                 # Testes e recursos para API
+ │   │   ├─ features/        # Cenários BDD (arquivos .feature)
+ │   │   └─ services/        # Serviços auxiliares (requisições, helpers)
+ │   │
+ │   └─ web/                 # Testes e recursos para interface web
+ │       ├─ features/        # Cenários BDD da camada web
+ │       └─ pages/           # Page Objects (abstrações de páginas)
  │
- ├─ fixtures/             # Arquivos estáticos (mocks, JSONs de dados)
- │
- ├─ support/              # Configurações e comandos globais
- │   └─ step_definitions/ # Implementações dos steps do BDD (API/Web)
- │       ├─ api/
- │       └─ web/
- │
- ├─ commands.js           # Comandos customizados do Cypress
- └─ e2e.js                # Arquivo de configuração dos testes e hooks
+ ├─ fixtures/                # Arquivos estáticos (mocks, dados de massa, JSONs)
+ ├─ support/                 # Configurações e utilitários globais
+ │   ├─ jsons/               # Massa de dados e configurações auxiliares
+ │   │
+ │   ├─ step_definitions/    # Implementações dos steps do BDD
+ │   │
+ │   ├─ commands.js          # Comandos customizados do Cypress
+ │   ├─ e2e.js               # Arquivo de configuração dos testes e hooks
+ │   └─ utils.js             # Funções globais
 ```
 
 ## 📝 Pré-requisitos | Instalação | Execução dos testes 
@@ -44,5 +49,5 @@ cypress/
 - Os resultados podem ser acompanhados na aba Actions do repositório
 
 ## 👨‍💻 Autor
-Desenvolvido por João Diniz
-📧 jdinizctt@gmail.com
+- Desenvolvido por João Diniz
+- 📧 jdinizctt@gmail.com
