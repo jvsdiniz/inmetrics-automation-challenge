@@ -4,7 +4,8 @@
   "description": "WEB and API Automation Challenge",
   "main": "index.js",
   "scripts": {
-    "cypress:open": "cypress open"
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run"
   },
   "keywords": [
     "cypress",
