@@ -1,7 +1,7 @@
 import { Given, When, Then } from "@badeball/cypress-cucumber-preprocessor";
-import LoginPage from "../../../../e2e/web/pages/loginPage";
-import users from "../../../jsons/users.json"
-import * as utils from "../../../utils"
+import LoginPage from "../../../e2e/web/pages/loginPage";
+import users from "../../jsons/users.json"
+import * as utils from "../../utils"
 
 const loginPage = new LoginPage();
 

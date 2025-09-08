@@ -44,3 +44,8 @@ export function validarImagensDiferentes() {
       expect(uniqueSrcs.size).to.equal(srcs.length);
     });
 }
+
+export function loginWebStandard() {
+  cy.visit(`${Cypress.env("apiWeb")}`);
+  loginPage.login("standard_user", "secret_sauce");
+}
