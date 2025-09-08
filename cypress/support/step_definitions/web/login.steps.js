@@ -44,6 +44,8 @@ Then("o sistema deve responder conforme o perfil {string}", (tipoUsuario) => {
             expect(duracao).to.be.greaterThan(5000).and.lessThan(7000);
         })
     }
+
+    cy.screenshot();
 })
 
 When("a tela for carregada", () => {

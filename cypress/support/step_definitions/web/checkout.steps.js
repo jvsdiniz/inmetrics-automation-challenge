@@ -18,6 +18,7 @@ Then("devemos ver a mensagem de sucesso", () => {
     cy.url().should("include", "/checkout-complete.html");
     cy.contains("Checkout: Complete!")
     cy.contains("Thank you for your order!")
+    cy.screenshot();
 });
 
 
@@ -27,6 +28,7 @@ When("um item for adicionado e retirado", () => {
 
 Then("o carrinho deve estar vazio", () => {
     checkoutPage.elements().itemNoCarrinho().should('not.exist');
+    cy.screenshot();
 });
 
 When("um pedido com mais de um item for feito com sucesso", () => {
@@ -38,7 +40,7 @@ When("eu preencho os campos {string}, {string}, {string}", (firstName, lastName,
 });
 
 Then("deve aparecer a mensagem de erro {string}", (mensagemErro) => {
-  checkoutPage.validarMensagensDeErroCamposObrigatorios(mensagemErro)
+  checkoutPage.validarMensagensDeErroCamposObrigatorios(mensagemErro);
 });
 
 

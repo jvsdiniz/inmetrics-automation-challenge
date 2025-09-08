@@ -37,6 +37,7 @@ class loginPage {
         });
 
         mensagemErro().should('not.exist');
+        cy.screenshot();
     }
 
 }

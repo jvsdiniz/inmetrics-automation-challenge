@@ -46,6 +46,7 @@ class usersServices {
             expect(response.body.message).to.eq("Cadastro realizado com sucesso");
             expect(response.body._id).to.exist
         })
+        cy.screenshot();
     }
 
     buscarTodosOsUsuarios() {
@@ -74,6 +75,7 @@ class usersServices {
             }
 
         })
+        cy.screenshot();
     }
 
     buscarUsuarioAtravesDoRegistro() {
@@ -103,6 +105,7 @@ class usersServices {
             expect(usuario._id).to.be.a('string');
             expect(usuario.email).to.include('@');
         })
+        cy.screenshot();
     }
 
     atualizarDadosUsuario(level) {
@@ -135,6 +138,7 @@ class usersServices {
             expect(response.status).to.eq(200);
             expect(response.body.message).to.eq("Registro alterado com sucesso");
         })
+        cy.screenshot();
     }
 
     deletarUsuario() {
@@ -154,6 +158,7 @@ class usersServices {
             expect(response.status).to.eq(400);
             expect(response.body.message).to.eq("Usuário não encontrado");
         })
+        cy.screenshot();
     }
 
     buscarUsuarioComRegistroInvalido() {
@@ -169,6 +174,7 @@ class usersServices {
             expect(response.status).to.eq(400);
             expect(response.body.id).to.eq("id deve ter exatamente 16 caracteres alfanuméricos");
         })
+        cy.screenshot();
     }
 
     cadastrarUsuarioCamposVazios() {
@@ -192,6 +198,7 @@ class usersServices {
             expect(body.password).to.eq("password não pode ficar em branco");
             expect(body.administrador).to.eq("administrador deve ser 'true' ou 'false'");
         })
+        cy.screenshot();
     }
 
     cadastrarUsuarioBodyVazio() {
@@ -215,6 +222,7 @@ class usersServices {
             expect(body.password).to.eq("password é obrigatório");
             expect(body.administrador).to.eq("administrador é obrigatório");
         })
+        cy.screenshot();
     }
 
     atualizarUsuarioComRegistro() {
@@ -239,6 +247,7 @@ class usersServices {
             expect(response.status).to.eq(400);
             expect(response.body._id).to.eq("_id não é permitido")
         })
+        cy.screenshot();
     }
 
     deletarUsuarioInexistente() {
@@ -257,6 +266,7 @@ class usersServices {
             expect(response.status).to.eq(200);
             expect(response.body.message).to.eq("Nenhum registro excluído");
         })
+        cy.screenshot();
     }
 
 }

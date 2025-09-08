@@ -33,6 +33,7 @@ class loginServices {
             expect(response.body).to.have.property("message", "Login realizado com sucesso");
             expect(response.body).to.have.property("authorization");
         })
+        cy.screenshot();
     }
 
     gerarDadosCamposVazios() {
@@ -61,6 +62,7 @@ class loginServices {
             expect(body.email).to.eq("email não pode ficar em branco");
             expect(body.password).to.eq("password não pode ficar em branco");
         })
+        cy.screenshot();
     }
 
     loginUsuarioBodyVazio() {
@@ -82,6 +84,7 @@ class loginServices {
             expect(body.email).to.eq("email é obrigatório");
             expect(body.password).to.eq("password é obrigatório");
         })
+        cy.screenshot();
     }
 
     loginEmailInvalido() {
@@ -100,6 +103,7 @@ class loginServices {
             expect(response.status).to.eq(400);
             expect(response.body.email).to.eq("email deve ser um email válido");
         })
+        cy.screenshot();
     }
 
 }

@@ -76,6 +76,7 @@ class checkoutPage {
 
     validarMensagensDeErroCamposObrigatorios(mensagemErro){
         this.elements().mensagemErro().should("be.visible").and("contain", mensagemErro);
+        cy.screenshot();
     }
 
 }
